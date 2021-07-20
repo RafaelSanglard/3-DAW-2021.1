@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar todos os produtos</title>
+    <form ></form>
+    <script>
+        function mostraInfo(strUF) {
+            console.log(strUF);
+            if (strUF.length > 0) {
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("resposta").value = this.responseText;
+                        console.log(this.responseText);
+                        let prods = document.getElementById("pro");
+                        let res = new Option(this.responseText, this.responseText);
+                        prod.options.add(res);
+                    }
+                }
+                xmlHttp.open("GET", "http://localhost/3daw/outros/getprodutos2.php?cod=" + strUF, true);
+                xmlHttp.send();
+                console.log("requisição enviada");
+    
+            }
+        }
+    </script>
+</head>
+<body> <h3>Listar todos os produtos</h3>
+<form action="">
+    <br>
+    <br>
+    <button onclick='mostraInfo(this.value)'>Listar</button>
+    <br>
+    <br>
+    <br>
+    Produtos:
+    <select id="pro">
+
+    </select>
+    <br>
+</form>
+<br><br><br>
+<a href='Av2Home.html'>Clique aqui para ir para a pagina principal</a><br>
+</body>
+</html>
